@@ -1,5 +1,3 @@
-import sys
-
 def read_valid(lines: list[str]) -> list[dict]:
     data = []
     for line in lines:
@@ -15,16 +13,21 @@ def parse_record(line: str) -> dict:
         raise ValueError("Поля не три")
     
     city, temp, date = parts
-    temp = float(temp)
+    try:
+        temp = float(temp)
+    except:
+        raise ValueError("Температура не является числом")
     
-    if not city or not date:
+    if not city.strip() or not date.strip():
         raise ValueError("Город или дата пустая")
     
     return {"city": city, "temp": temp, "date": date}
 
 def average_by_city(records: list[dict]) -> dict:
-    pass
+    for data in records:
+        print(data)
 
 def warmest_city(records: list[dict]) -> str:
     pass
 
+average_by_city(read_valid(["Азов;24.5;2026-07-01", "Азов;27.4;2026-07-05"]))
