@@ -21,7 +21,7 @@ def parse_record(line: str) -> dict:
     if not city.strip() or not date.strip():
         raise ValueError("Город или дата пустая")
     
-    return {"city": city, "temp": temp, "date": date}
+    return {"city": city, "temperature": temp, "date": date}
 
 def average_by_city(records: list[dict]) -> dict:
     for data in records:
