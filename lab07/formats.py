@@ -85,3 +85,6 @@ def merge_by_key(rows: list[dict], extra: dict, key: str = "id") -> list[dict]:
         else:
             result.append(row.copy())
     return result
+
+def records_to_json(records: list[dict]) -> str:
+    return json.dumps(records, sort_keys=True, indent=2, ensure_ascii=False)
