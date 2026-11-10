@@ -35,6 +35,12 @@ def parse_value(value: str):
     except ValueError:
         pass
     
+    if "," in value:
+        try:
+            return float(value.replace(",", "."))
+        except ValueError:
+            pass
+    
     return value
 
 
