@@ -1,12 +1,14 @@
 def count_by_extension(paths: list[str]) -> dict[str, int]:
     counts = {}
     for path in paths:
-        filename = path.split("/")[-1]  # берём имя файла
+        filename = path.split("/")[-1]
         
-        if "." in filename:
-            ext = filename.rsplit(".", 1)[1].lower()  # всё после последней точки
-        else:
+        if "." not in filename:
             ext = ""
+        elif filename.startswith(".") and "." not in filename[1:]:
+            ext = ""  # скрытый файл без расширения типа .gitignore
+        else:
+            ext = filename.rsplit(".", 1)[1].lower()
         
         counts[ext] = counts.get(ext, 0) + 1
     
