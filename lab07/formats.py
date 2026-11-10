@@ -74,3 +74,14 @@ def parse_settings(lines: list[str]) -> dict:
                 result[key] = parse_value(value)
     
     return result
+
+def merge_by_key(rows: list[dict], extra: dict, key: str = "id") -> list[dict]:
+    result = []
+    for row in rows:
+        key_value = row.get(key)
+        if key_value in extra:
+            merged = {**extra[key_value], **row}
+            result.append(merged)
+        else:
+            result.append(row.copy())
+    return result
